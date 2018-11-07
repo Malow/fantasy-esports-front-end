@@ -37,8 +37,6 @@
       "errors": {
         "username-password-not-match": "Username and Password does not match.",
         "registration-failed": "Registration failed.",
-        "FE000001": "Email already exists.",
-        "FE000002": "Display name already exists.",
         "email-address-required": "Email is required.",
         "email-address-pattern-missmatch": "Email needs to be correctly formatted e.g email@gmail.com",
         "password-required": "Password is required.",
@@ -46,7 +44,11 @@
         "confirm-password-required": "Password needs to be confirmed.",
         "password-not-match": "Password does not match.",
         "display-name-required": "Display Name is required.",
-        "display-name-pattern-missmatch": "Display Name can contain any character or number and a maximum 20 characters long."
+        "display-name-pattern-missmatch": "Display Name can contain any character or number and a maximum 20 characters long.",
+        "code": {
+          "email-exist": "Email already exists.",
+          "display-name-exist": "Display name already exists."
+        }
       }
     }
   }
