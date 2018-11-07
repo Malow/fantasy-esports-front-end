@@ -19,14 +19,11 @@ export class AccountService extends HttpService {
     return localStorage.getItem('sessionKey') ? true : false;
   }
 
-  logIn(email: string, password: string): void {
-    this.post(URI.LOGIN, {
+  logIn(email: string, password: string): Observable<any> {
+    return this.post(URI.LOGIN, {
       email: email,
       password: password
-    }).subscribe((data) => {
-      this.login(data['sessionKey']);
     });
-
   }
 
   register(email: string, password: string, displayName: string) {
@@ -35,7 +32,7 @@ export class AccountService extends HttpService {
       password: password,
       displayName: displayName
     }).subscribe((data) => {
-      this.login(data['sessionKey']);
+      this.storeSessionKey(data['sessionKey']);
     });
   }
 
@@ -43,7 +40,7 @@ export class AccountService extends HttpService {
     localStorage.removeItem('sessionKey');
   }
 
-  private login(sessionKey: string) {
+  storeSessionKey(sessionKey: string) {
     localStorage.setItem('sessionKey', sessionKey);
     this.router.navigate(['home']);
   }

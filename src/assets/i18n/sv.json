@@ -1,0 +1,50 @@
+{
+  "app": {
+    "home": "Hem",
+    "leagues": "Ligor",
+    "logout": "Logga ut"
+  },
+  "errorpages": {
+    "not-found": {
+      "page-not-found": "Sidan hittades inte"
+    }
+  },
+  "pages": {
+    "home": {
+      "news": {
+        "news": "Nyheter"
+      },
+      "previous-matches": {
+        "previous-matches": "Föregående Matcher"
+      },
+      "todays-matches": {
+        "todays-matches": "Dagens Matcher"
+      }
+    },
+    "leagues": {
+      "create-league": "Skapa Liga",
+      "leagues": "Ligor"
+    },
+    "login": {
+      "welcome": "Välkommen till Fantasy Esports!",
+      "login": "Logga in",
+      "register": "Registrera",
+      "password": "Lösenord",
+      "confirm-password": "Upprepa lösenord",
+      "email-address": "Epost adress",
+      "display-name": "Publikt namn",
+      "stay-signed-in": "Håll mig inloggad",
+      "errors": {
+        "username-password-not-match": "Email adress eller lösenord är inte korrekt.",
+        "email-address-required": "Email adress krävs.",
+        "email-address-pattern-missmatch": "Email adressen måste vara korrekt tex. email@gmail.com.",
+        "password-required": "Lösenord krävs.",
+        "password-pattern-missmatch": "Lösenorder måste vara mellan 8 och 20 tecken; minst ett tecken måste vara gemen, en måste vara versal, en måste vara nummer, och ett speciellt tecken, men kan inte innehålla blanksteg.",
+        "confirm-password-required": "Lösenorder måste upprepas.",
+        "password-not-match": "Lösenorden matchar inte.",
+        "display-name-required": "Publikt namn krävs.",
+        "display-name-pattern-missmatch": "Publikt namn kan innehålla vilket tecken och nummer som helst och max 20 tecken långt."
+      }
+    }
+  }
+}

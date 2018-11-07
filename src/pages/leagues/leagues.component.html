@@ -1,9 +1,9 @@
 <div class="flex-container">
     <div class="flex-left">
-        <button type="button" class="btn btn-primary btn-block">Create League</button>
+        <button type="button" class="btn btn-primary btn-block">{{ 'pages.leagues.create-league' | translate }}</button>
     </div>
     <div class="flex-right">
-      <h1>Leagues</h1>
+      <h1>{{ 'pages.leagues.leagues' | translate }}</h1>
       <div class="leagues" *ngIf="(leagues$ | async) as leagues; else loading">
         <div class="leageues-item" (click)="goToLeague(league)" *ngFor="let league of leagues" >
           <img class="leagues-icon" src="/assets/images/game-icons/starcraft.png" width="50px" height="50px">

@@ -1,13 +1,16 @@
-<div class="fl-nav-bar" *ngIf="isLoggedIn()">
+<div class="fl-nav-bar">
   <div class="container main-nav">
-    <div class="nav-item">
-      <span routerLink="/home" routerLinkActive="active">Home</span>
+    <div class="nav-item" *ngIf="isLoggedIn()">
+      <span routerLink="/home" routerLinkActive="active">{{ 'app.home' | translate }}</span>
+    </div>
+    <div class="nav-item" *ngIf="isLoggedIn()">
+      <span routerLink="/leagues" routerLinkActive="active">{{ 'app.leagues' | translate }}</span>
     </div>
     <div class="nav-item">
-      <span routerLink="/leagues" routerLinkActive="active">Leagues</span>
+      <span (click)="logOut()">{{ 'app.logout' | translate }}</span>
     </div>
-    <div class="nav-item">
-      <span (click)="logOut()">Logout</span>
+    <div class="language-picker">
+      <div class="language" *ngFor="let language of languages" (click)="setLanguage(language)">{{ language }}</div>
     </div>
   </div>
 </div>

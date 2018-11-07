@@ -1,0 +1,50 @@
+{
+  "app": {
+    "home": "Home",
+    "leagues": "Leagues",
+    "logout": "Logout"
+  },
+  "errorpages": {
+    "not-found": {
+      "page-not-found": "Page Not Found"
+    }
+  },
+  "pages": {
+    "home": {
+      "news": {
+        "news": "News"
+      },
+      "previous-matches": {
+        "previous-matches": "Previous Matches"
+      },
+      "todays-matches": {
+        "todays-matches": "Today's Matches"
+      }
+    },
+    "leagues": {
+      "create-league": "Create League",
+      "leagues": "Leagues"
+    },
+    "login": {
+      "welcome": "Welcome to Fantasy Esports!",
+      "login": "Login",
+      "register": "Register",
+      "password": "Password",
+      "confirm-password": "Confirm Password",
+      "email-address": "Email address",
+      "display-name": "Display Name",
+      "stay-signed-in": "Stay signed in",
+      "errors": {
+        "username-password-not-match": "Username and Password does not match",
+        "email-address-required": "Email is required.",
+        "email-address-pattern-missmatch": "Email needs to be correctly formatted e.g email@gmail.com",
+        "password-required": "Password is required.",
+        "password-pattern-missmatch": "Password between 8 and 20 characters; must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character, but cannot contain whitespace.",
+        "confirm-password-required": "Password needs to be confirmed.",
+        "password-not-match": "Password does not match.",
+        "display-name-required": "Display Name is required.",
+        "display-name-pattern-missmatch": "Display Name can contain any character or number and a maximum 20 characters long."
+      }
+    }
+  }
+}

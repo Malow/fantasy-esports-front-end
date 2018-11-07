@@ -58,3 +58,16 @@
   -moz-box-shadow: inset 0px -3px 0px 0px rgba(0,191,255,1);
   box-shadow: inset 0px -3px 0px 0px rgba(0,191,255,1);
 }
+
+.language-picker {
+  text-align: right;
+  display: inline-block;
+  border-right: 1px solid gray;
+}
+.language-picker .language {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 2px;
+  text-transform: capitalize;
+}

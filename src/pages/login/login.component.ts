@@ -5,9 +5,7 @@ import { Router } from '@angular/router';
 import { AccountService } from '../../shared/services/account.service';
 
 const PASSWORD_REGEXP: RegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/;
-const PASSWORD_HINT: string = 'Password between 8 and 20 characters; must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character, but cannot contain whitespace.';
 const DISPLAY_NAME_REGEXP: RegExp = /^[a-zA-Z0-9]{0,20}$/;
-const DISPLAY_NAME_HINT: string = 'Display Name can contain any character or number and a maximum 20 characters long.';
 
 
 
@@ -38,20 +36,16 @@ export class LoginComponent {
     });
   }
 
-  getInvalidPasswordMessage(): string {
-    return PASSWORD_HINT;
-  }
-
-  getInvalidDisplayNameMessage(): string {
-    return DISPLAY_NAME_HINT;
-  }
-
   onLogin() {
     this.accountService.logIn(this.loginForm.controls.email.value,
-      this.loginForm.controls.password.value);
+      this.loginForm.controls.password.value).subscribe((data) => {
+        this.accountService.storeSessionKey(data['sessionKey']);
+      }, (error) => {
+        this.loginFailed = true;
+      });
   }
 
   onRegister() {
-    this.accountService.register(this.registerForm.controls.email.value, this.registerForm.controls.password.value, this.registerForm.controls.displayName.value)
+    this.accountService.register(this.registerForm.controls.email.value, this.registerForm.controls.password.value, this.registerForm.controls.displayName.value);
   }
 }
