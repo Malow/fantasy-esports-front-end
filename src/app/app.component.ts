@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../shared/services/auth.service';
+import { AccountService } from '../shared/services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +8,14 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private accountService: AccountService) {}
 
   logOut() {
-    this.authService.logOut();
+    this.accountService.logOut();
+    this.router.navigate(['login']);
   }
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
+    return this.accountService.isLoggedIn();
   }
 }

@@ -1,0 +1,12 @@
+.home.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.home.flex-container .flex-left {
+  flex: 1 0 80%;
+}
+
+.home.flex-container .flex-right {
+  flex: 1 0 180px;
+}
