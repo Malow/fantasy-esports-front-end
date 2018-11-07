@@ -62,7 +62,6 @@
 .language-picker {
   text-align: right;
   display: inline-block;
-  border-right: 1px solid gray;
 }
 .language-picker .language {
   display: inline-block;

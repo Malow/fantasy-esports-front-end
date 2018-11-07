@@ -18,6 +18,8 @@ export class LoginComponent {
   loginForm: FormGroup;
   registerForm: FormGroup;
   loginFailed = false;
+  registrationFailed = false;
+  errorCode: string;
 
   constructor(private accountService: AccountService, private router: Router) {
     this.loginForm = new FormGroup({
@@ -42,10 +44,22 @@ export class LoginComponent {
         this.accountService.storeSessionKey(data['sessionKey']);
       }, (error) => {
         this.loginFailed = true;
+
+        this.registrationFailed = false;
       });
   }
 
   onRegister() {
-    this.accountService.register(this.registerForm.controls.email.value, this.registerForm.controls.password.value, this.registerForm.controls.displayName.value);
+    this.accountService.register(this.registerForm.controls.email.value, this.registerForm.controls.password.value, this.registerForm.controls.displayName.value)
+      .subscribe((data) => {
+      this.accountService.storeSessionKey(data['sessionKey']);
+    }, (error) => {
+      this.loginFailed = false;
+      this.registrationFailed = true;
+
+      if (error && error.error && error.error.message && error.error.message.code) {
+        this.errorCode = error.error.message.code;
+      }
+    });
   }
 }

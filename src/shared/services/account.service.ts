@@ -26,13 +26,11 @@ export class AccountService extends HttpService {
     });
   }
 
-  register(email: string, password: string, displayName: string) {
-    this.post(URI.REGISTER, {
+  register(email: string, password: string, displayName: string): Observable<any> {
+    return this.post(URI.REGISTER, {
       email: email,
       password: password,
       displayName: displayName
-    }).subscribe((data) => {
-      this.storeSessionKey(data['sessionKey']);
     });
   }
 
