@@ -7,6 +7,7 @@ import { League } from '../models/league.model';
 
 export enum URI {
   LEAGUES = '/league',
+  LEAGUE = '/league/:id'
 }
 
 @Injectable()
@@ -15,7 +16,15 @@ export class LeagueService extends HttpService {
     super(httpClient);
   }
 
+  getLeague(leagueId: string): Observable<League> {
+    return this.get<League>(URI.LEAGUE, {id: leagueId});
+  }
+
   getLeagues(): Observable<Array<League>> {
     return this.get<Array<League>>(URI.LEAGUES);
+  }
+
+  createLeague(body): Observable<any> {
+    return this.post(URI.LEAGUES, body);
   }
 }

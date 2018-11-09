@@ -19,7 +19,8 @@ export class LoginComponent {
   registerForm: FormGroup;
   loginFailed = false;
   registrationFailed = false;
-  errorCode: string;
+  registrationErrorCode: string;
+  loginErrorCode: string;
 
   constructor(private accountService: AccountService, private router: Router) {
     this.loginForm = new FormGroup({
@@ -44,8 +45,12 @@ export class LoginComponent {
         this.accountService.storeSessionKey(data['sessionKey']);
       }, (error) => {
         this.loginFailed = true;
-
         this.registrationFailed = false;
+        this.registrationErrorCode = '';
+
+        if (error && error.error && error.error.errorCode) {
+          this.loginErrorCode = error.error.errorCode;
+        }
       });
   }
 
@@ -56,9 +61,10 @@ export class LoginComponent {
     }, (error) => {
       this.loginFailed = false;
       this.registrationFailed = true;
+      this.loginErrorCode = '';
 
-      if (error && error.error && error.error.message && error.error.message.code) {
-        this.errorCode = error.error.message.code;
+      if (error && error.error && error.error.errorCode) {
+        this.registrationErrorCode = error.error.errorCode;
       }
     });
   }

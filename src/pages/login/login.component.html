@@ -1,13 +1,20 @@
 <div class="container">
   <div class="login-page shadow">
     <h1 class="title">{{ 'pages.login.welcome' | translate }}</h1>
-    <div class="alert alert-danger" *ngIf="loginFailed">{{ 'pages.login.errors.username-password-not-match' | translate }}</div>
+    <div class="alert alert-danger" *ngIf="loginFailed">
+      <span>
+        {{ 'pages.login.errors.login-failed' | translate }}
+      </span>
+      <span *ngIf="loginErrorCode">
+        {{ 'pages.login.errors.code.' + loginErrorCode | translate }}
+      </span>
+    </div>
     <div class="alert alert-danger" *ngIf="registrationFailed">
       <span>
         {{ 'pages.login.errors.registration-failed' | translate }}
       </span>
-      <span *ngIf="errorCode">
-        {{ 'pages.login.errors.code.' + errorCode | translate }}
+      <span *ngIf="registrationErrorCode">
+        {{ 'pages.login.errors.code.' + registrationErrorCode | translate }}
       </span>
     </div>
     <div class="row">
@@ -30,11 +37,11 @@
           <div class="form-group">
             <label for="password">{{ 'pages.login.password' | translate }}</label>
             <input type="password"
-            class="form-control"
-            id="password"
-            formControlName="password"
-            placeholder="********"
-            [ngClass]="{'border border-danger': loginForm.controls.password?.errors?.length > 0}">
+              class="form-control"
+              id="password"
+              formControlName="password"
+              placeholder="********"
+              [ngClass]="{'border border-danger': loginForm.controls.password?.errors?.length > 0}">
           </div>
           <div *ngIf="!loginForm.controls.password.pristine">
             <div class="alert alert-danger" *ngIf="loginForm.controls.password.errors?.required">{{ 'pages.login.errors.password-required' | translate }}</div>

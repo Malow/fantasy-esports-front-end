@@ -6,9 +6,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginActivate } from '../shared/components/login-activate.component';
@@ -26,6 +28,7 @@ import { LoginComponent } from '../pages/login/login.component';
 import { TodaysMatchesComponent } from '../pages/home/components/todays-matches/todays-matches.component';
 import { PreviousMatchesComponent } from '../pages/home/components/previous-matches/previous-matches.component';
 import { NewsComponent } from '../pages/home/components/news/news.component';
+import { CreateLeague } from '../pages/leagues/components/create-league/create-league.component';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full', canActivate: [LoginActivate]},
@@ -37,7 +40,7 @@ const appRoutes: Routes = [
 ];
 
 // Add an icon to the library for convenient access in other components
-library.add(faSpinner);
+library.add(faSpinner, faCalendarAlt);
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -54,10 +57,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     LeagueComponent,
     TodaysMatchesComponent,
     PreviousMatchesComponent,
-    NewsComponent
+    NewsComponent,
+    CreateLeague
   ],
   imports: [
     NgbModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -68,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],

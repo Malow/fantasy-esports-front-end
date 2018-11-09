@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Routes, ParamMap, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { LeagueService } from '../../shared/services/league.service';
 
 @Component({
   selector: 'league-page',
@@ -8,15 +9,14 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./league.component.css']
 })
 export class LeagueComponent {
-  leagueId: string;
+  league$: any;
 
-  constructor(private route: ActivatedRoute) {
-    this.leagueId = '';
+  constructor(private route: ActivatedRoute, private leagueService: LeagueService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.leagueId = params['id'];
+      this.league$ = this.leagueService.getLeague(params['id']);
     });
   }
 }

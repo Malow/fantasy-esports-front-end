@@ -1,27 +1,31 @@
-<div class="flex-container">
-    <div class="flex-left">
-        <button type="button" class="btn btn-primary btn-block">{{ 'pages.leagues.create-league' | translate }}</button>
+<h1>{{ 'pages.leagues.leagues' | translate }}</h1>
+<create-league></create-league>
+<div class="leagues">
+<ng-container *ngIf="(leagues$ | async) as leagues; else loading">
+  <div class="leageues-item" (click)="goToLeague(league)" *ngFor="let league of leagues" >
+    <img class="leagues-icon" src="/assets/images/game-icons/starcraft.png" width="50px" height="50px">
+    <div class="leagues-name">
+        {{ league.name }}
     </div>
-    <div class="flex-right">
-      <h1>{{ 'pages.leagues.leagues' | translate }}</h1>
-      <div class="leagues" *ngIf="(leagues$ | async) as leagues; else loading">
-        <div class="leageues-item" (click)="goToLeague(league)" *ngFor="let league of leagues" >
-          <img class="leagues-icon" src="/assets/images/game-icons/starcraft.png" width="50px" height="50px">
-          <div class="leagues-name">
-              {{ league.name }}
-          </div>
-          <div class="leagues-id">
-              {{ league.id }}
-          </div>
-          <div class="leagues-owner">
-              {{ league.ownerDisplayName }}
-          </div>
-        </div>
+    <div class="leagues-owner">
+        {{ league.ownerDisplayName }}
+    </div>
+    <div class="leagues-period">
+      <div *ngIf="league.startDate">
+        {{ 'pages.leagues.start-date' | translate }}: {{ league.startDate | date }}
       </div>
-      <ng-template #loading>
-        <div class="loading">
-            <fa-icon icon="spinner" [spin]="true" size="3x"></fa-icon>
-        </div>
-      </ng-template>
+      <div *ngIf="league.endDate">
+        {{ 'pages.leagues.end-date' | translate }}: {{ league.endDate | date }}
+      </div>
     </div>
   </div>
+  <div class="no-leagues" *ngIf="leagues.length === 0">
+    <h4>No leagues found</h4>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <div class="loading">
+    <fa-icon icon="spinner" [spin]="true" size="3x"></fa-icon>
+  </div>
+</ng-template>
+</div>

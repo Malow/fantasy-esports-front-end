@@ -1,1 +1,28 @@
-<p>Test {{leagueId}} </p>
+<ng-container *ngIf="(league$ | async) as league; else loading">
+  <div>
+    <h5>{{ 'pages.league.name' | translate }}</h5>
+    {{ league.name }}
+  </div>
+  <div>
+    <h5>{{ 'pages.league.owner' | translate }}</h5>
+    {{ league.ownerDisplayName }}
+  </div>
+  <div>
+    <div>
+      <h5>{{ 'pages.league.start-date' | translate }}</h5>
+      {{ league.startDate | date }}
+    </div>
+    <div>
+      <h5>{{ 'pages.league.end-date' | translate }}</h5>
+      {{ league.endDate | date }}
+    </div>
+  </div>
+  <div class="no-league" *ngIf="!league">
+    <h4>League not found</h4>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <div class="loading">
+    <fa-icon icon="spinner" [spin]="true" size="3x"></fa-icon>
+  </div>
+</ng-template>

@@ -22,8 +22,15 @@
       }
     },
     "leagues": {
-      "create-league": "Create League",
-      "leagues": "Leagues"
+      "create-league": {
+        "create-league": "Create League",
+        "toggle-create-league": "Toggle create League",
+        "from-date": "From date",
+        "to-date": "To date"
+      },
+      "leagues": "Leagues",
+      "start-date": "Start date",
+      "end-date": "End date"
     },
     "login": {
       "welcome": "Welcome to Fantasy Esports!",
@@ -35,7 +42,7 @@
       "display-name": "Display Name",
       "stay-signed-in": "Stay signed in",
       "errors": {
-        "username-password-not-match": "Username and Password does not match.",
+        "login-failed": "Login failed.",
         "registration-failed": "Registration failed.",
         "email-address-required": "Email is required.",
         "email-address-pattern-missmatch": "Email needs to be correctly formatted e.g email@gmail.com",
@@ -47,9 +54,17 @@
         "display-name-pattern-missmatch": "Display Name can contain any character or number and a maximum 20 characters long.",
         "code": {
           "email-exist": "Email already exists.",
-          "display-name-exist": "Display name already exists."
+          "display-name-exists": "Display name already exists.",
+          "user-does-not-exist": "User doesn't exist.",
+          "password-incorrect": "Incorrect password."
         }
       }
+    },
+    "league": {
+      "name": "Name",
+      "owner": "Owner",
+      "start-date": "Start date",
+      "end-date": "End date"
     }
   }
 }

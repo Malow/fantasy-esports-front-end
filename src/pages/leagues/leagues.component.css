@@ -1,46 +1,33 @@
-.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.flex-container .flex-left {
-  flex: 1;
-}
-
-.flex-container .flex-right {
-  flex: 1 0 80%;
-}
-
 .leagues .leageues-item {
   display: flex;
   flex-flow: row wrap;
   background-color: white;
   padding: 5px 10px;
   margin-bottom: 5px;
-
+  align-items: center;
   cursor: pointer;
 }
 
 .leagues .leagues-icon {
-  flex: 0 1 60px;
-  align-self: center;
+  flex: 0 0 60px;
 }
 
 .leagues .leagues-name {
   font-weight: 800;
-  align-self: center;
-  flex: 1 1 30%;
-}
-
-.leagues .leagues-id {
-  align-self: center;
-  flex: 1 1 30%;
+  flex: 1 0 30%;
 }
 
 .leagues .leagues-owner {
-  text-align: center;
-  align-self: center;
-  flex: 1 1 20%;
+  flex: 1 0 30%;
+}
+
+.leagues .leagues-period {
+  text-align: left;
+  flex: 1 0 30%;
+}
+
+.leagues {
+  padding-bottom: 5px;
 }
 
 .loading {
@@ -54,8 +41,14 @@
     padding-right: 5px;
   }
 }
+
+/* Small Screen Only*/
 @media only screen and (max-width: 991px) {
   .flex-container .flex-left {
     padding-top: 5px;
   }
+}
+
+.no-leagues {
+  padding-bottom: 5px;
 }

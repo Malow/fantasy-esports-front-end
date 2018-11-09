@@ -1,0 +1,31 @@
+<button type="button" class="btn btn-primary" (click)="createLeague = !createLeague">{{ 'pages.leagues.create-league.toggle-create-league' | translate }}</button>
+<div class="create-league" [@openClose]="createLeague ? 'open' : 'closed'">
+  <form class="form-inline">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="leagueName" placeholder="League Name" id="leagueName" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="{{ 'pages.leagues.create-league.from-date' | translate}}"
+                name="fromDatePicker" [(ngModel)]="fromDate" ngbDatepicker #fromDatePicker="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="fromDatePicker.toggle()" type="button">
+            <fa-icon icon="calendar-alt"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="{{ 'pages.leagues.create-league.to-date' | translate}}"
+                name="toDatePicker" [(ngModel)]="toDate" ngbDatepicker #toDatePicker="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="toDatePicker.toggle()" type="button">
+            <fa-icon icon="calendar-alt"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="createNewLeague(leagueName, fromDate, toDate)">{{ 'pages.leagues.create-league.create-league' | translate }}</button>
+  </form>
+</div>
