@@ -4,10 +4,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { League } from '../models/league.model';
+import { Manager } from '../models/manager.model';
 
 export enum URI {
   LEAGUES = '/league',
-  LEAGUE = '/league/:id'
+  LEAGUE = '/league/:id',
+  MANAGERS = '/league/:id/manager'
+}
+
+export enum LEAGUE_ROLES {
+  OWNER = 'OWNER'
 }
 
 @Injectable()
@@ -26,5 +32,9 @@ export class LeagueService extends HttpService {
 
   createLeague(body): Observable<any> {
     return this.post(URI.LEAGUES, body);
+  }
+
+  getManagers(leagueId: string): Observable<Array<Manager>> {
+    return this.get<Array<Manager>>(URI.MANAGERS, {id: leagueId});
   }
 }

@@ -12,6 +12,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent {
   languages: Array<string> = ['en'];
+  displayName: string;
 
   constructor(private router: Router, private accountService: AccountService, private translate: TranslateService) {
     // this language will be used as a fallback when a translation isn't found in the current language
@@ -19,6 +20,8 @@ export class AppComponent {
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use(this.languages[0]);
+
+    this.getDisplayName();
   }
 
   setLanguage(language: string) {
@@ -31,6 +34,14 @@ export class AppComponent {
   }
 
   isLoggedIn(): boolean {
-    return this.accountService.isLoggedIn();
+    return this.accountService.isLoggedIn;
+  }
+
+  getDisplayName() {
+    if (this.isLoggedIn()) {
+      this.accountService.getUser().subscribe((data) => {
+        this.displayName = data['displayName'];
+      });
+    }
   }
 }

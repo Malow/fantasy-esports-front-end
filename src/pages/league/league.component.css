@@ -1,3 +1,8 @@
-.loading {
+.content-loading {
   text-align: center;
+}
+
+.loading div {
+  background-color: gray;
+  border-radius: 10px;
 }

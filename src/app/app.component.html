@@ -12,6 +12,7 @@
     <div class="language-picker">
       <div class="language" *ngFor="let language of languages" (click)="setLanguage(language)">{{ language }}</div>
     </div>
+    <span class="welcome-name">Welcome {{ displayName }}</span>
   </div>
 </div>
 <div class="container main-content">

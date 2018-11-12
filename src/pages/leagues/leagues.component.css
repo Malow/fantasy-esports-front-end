@@ -23,7 +23,7 @@
 
 .leagues .leagues-period {
   text-align: left;
-  flex: 1 0 30%;
+  flex: 0 0 auto;
 }
 
 .leagues {

@@ -42,7 +42,8 @@ export class LoginComponent {
   onLogin() {
     this.accountService.logIn(this.loginForm.controls.email.value,
       this.loginForm.controls.password.value).subscribe((data) => {
-        this.accountService.storeSessionKey(data['sessionKey']);
+        this.storeKeys(data);
+        this.router.navigate(['home']);
       }, (error) => {
         this.loginFailed = true;
         this.registrationFailed = false;
@@ -57,7 +58,8 @@ export class LoginComponent {
   onRegister() {
     this.accountService.register(this.registerForm.controls.email.value, this.registerForm.controls.password.value, this.registerForm.controls.displayName.value)
       .subscribe((data) => {
-      this.accountService.storeSessionKey(data['sessionKey']);
+        this.storeKeys(data);
+        this.router.navigate(['home']);
     }, (error) => {
       this.loginFailed = false;
       this.registrationFailed = true;
@@ -67,5 +69,11 @@ export class LoginComponent {
         this.registrationErrorCode = error.error.errorCode;
       }
     });
+  }
+
+  private storeKeys(data) {
+    this.router.navigate(['home']);
+    this.accountService.storeSessionKey = data['sessionKey'];
+    this.accountService.storeAccountId = data['accountId'];
   }
 }

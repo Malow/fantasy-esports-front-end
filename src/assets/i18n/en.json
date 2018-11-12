@@ -62,7 +62,7 @@
     },
     "league": {
       "name": "Name",
-      "owner": "Owner",
+      "is-owner": "Is owner",
       "start-date": "Start date",
       "end-date": "End date"
     }

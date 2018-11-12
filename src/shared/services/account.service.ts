@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 
 export enum URI {
   LOGIN = '/account/login',
-  REGISTER = '/account/register'
+  REGISTER = '/account/register',
+  ACCOUNT = '/account'
 }
 
 @Injectable()
@@ -15,7 +16,7 @@ export class AccountService extends HttpService {
     super(httpClient);
   }
 
-  isLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     return localStorage.getItem('sessionKey') ? true : false;
   }
 
@@ -34,12 +35,29 @@ export class AccountService extends HttpService {
     });
   }
 
-  logOut(): void {
-    localStorage.removeItem('sessionKey');
+  getUser(): Observable<any> {
+    return this.get(URI.ACCOUNT);
   }
 
-  storeSessionKey(sessionKey: string) {
+
+  logOut(): void {
+    localStorage.removeItem('sessionKey');
+    localStorage.removeItem('accountId');
+  }
+
+  set storeSessionKey(sessionKey: string) {
     localStorage.setItem('sessionKey', sessionKey);
-    this.router.navigate(['home']);
+  }
+
+  set storeAccountId(accountId: string) {
+    localStorage.setItem('accountId', accountId);
+  }
+
+  get accountId(): string {
+    return localStorage.getItem('accountId');
+  }
+
+  get sessionKey(): string {
+    return localStorage.getItem('sessionKey');
   }
 }
