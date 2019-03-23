@@ -1,32 +1,64 @@
-<ng-container *ngIf="{ league: league$ | async, managers: managers$ | async } as leagueInfo; else loading">
-  <ng-container *ngIf="leagueInfo.league as league">
-    <ng-container *ngIf="leagueInfo.managers as managers">
-      <div>
-        <h5>{{ 'pages.league.name' | translate }}</h5>
-        {{ league.name }}
-      </div>
-      <div>
-        <h5>{{ 'pages.league.is-owner' | translate }}</h5>
-        {{ isOwner(managers) }}
-      </div>
-      <div>
-        <div>
-          <h5>{{ 'pages.league.start-date' | translate }}</h5>
-          {{ league.startDate | date }}
-        </div>
-        <div>
-          <h5>{{ 'pages.league.end-date' | translate }}</h5>
-          {{ league.endDate | date }}
-        </div>
-      </div>
-      <div class="no-league" *ngIf="!league">
-        <h4>League not found</h4>
-      </div>
+<div class="league">
+    <ng-container *ngIf="{ league: league$ | async, managers: managers$ | async } as leagueInfo; else loading">
+      <ng-container *ngIf="leagueInfo.league as league">
+        <ng-container *ngIf="leagueInfo.managers as managers">
+          <div class="header">
+              <h4 class="header-game-title">{{ league.name }}</h4>
+          </div>
+          <div class="league-details">
+            <router-outlet name="league"></router-outlet>
+            <div>
+              {{ 'pages.league.owner' | translate }}
+              <h5>{{ getOwner(managers)?.displayName}}</h5>
+            </div>
+            <div>
+              {{ 'pages.league.period' | translate }}
+              <h5>{{ league.startDate | date }} - {{ league.endDate | date }}</h5>
+            </div>
+            <div class="no-league" *ngIf="!league">
+              <h4>League not found</h4>
+            </div>
+            <div class="managers" *ngIf="managers$ | async as managers">
+              <h4>Members:</h4>
+              <h6 *ngFor="let manager of managers | filterManagers: ['MEMBER', 'OWNER']">
+                {{ manager.displayName }}
+              </h6>
+            </div>
+          </div>
+          <!-- I should make this a switch case -->
+          <div class="invite" *ngIf="getOwner(managers)?.accountId === accountId">
+            <input class="form-control" type="text" [(ngModel)]="inviteMangerName" (ngModelChange)="findUsers($event)" placeholder="Manager Name">
+            <button type="button" class="btn btn-primary" (click)="inviteManager(inviteMangerName, league)">Invite manager</button>
+            <ng-container *ngIf="inviteMangerName?.length > 2">
+              <div class="search-result" *ngIf="searchResult$ | async as searchResult; else searchIsLoading">
+                <div class="result" *ngFor="let result of searchResult.accounts">
+                  {{ result.displayName }}
+                </div>
+              </div>
+              <ng-template #searchIsLoading>
+                <div>
+                  <fa-icon icon="spinner" [spin]="true"></fa-icon>
+                </div>
+              </ng-template>
+            </ng-container>
+            <div>{{ searchResult }}</div>
+            <div class="managers" *ngIf="managers$ | async as managers">
+              <h4>Invited:</h4>
+              <h6 *ngFor="let manager of managers | filterManagers: 'INVITED'">
+                {{ manager.displayName }}
+              </h6>
+            </div>
+          </div>
+          <div class="accept-invite" *ngIf="isInvited(managers)">
+            <h4>You are invited! Join the league.</h4>
+            <button type="button" class="btn btn-primary" (click)="joinLeague(managers)">Accept Invite</button>
+          </div>
+        </ng-container>
+      </ng-container>
     </ng-container>
-  </ng-container>
-</ng-container>
-<ng-template #loading>
-  <div class="loading">
-    <fa-icon icon="spinner" [spin]="true" size="3x"></fa-icon>
-  </div>
-</ng-template>
+  <ng-template #loading>
+    <div class="loading">
+      <fa-icon icon="spinner" [spin]="true" size="3x"></fa-icon>
+    </div>
+  </ng-template>
+</div>

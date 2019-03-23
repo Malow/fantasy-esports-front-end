@@ -12,8 +12,14 @@ export enum URI {
   MANAGERS = '/league/:id/manager'
 }
 
+/**
+ * TODO:
+ * Move this to shared variables.
+ */
 export enum LEAGUE_ROLES {
-  OWNER = 'OWNER'
+  OWNER = 'OWNER',
+  INVITED = 'INVITED',
+  MEMBER = 'MEMBER'
 }
 
 @Injectable()
@@ -23,7 +29,7 @@ export class LeagueService extends HttpService {
   }
 
   getLeague(leagueId: string): Observable<League> {
-    return this.get<League>(URI.LEAGUE, {id: leagueId});
+    return this.get<League>(URI.LEAGUE, {uriParams: { id: leagueId }, queryParams: {}});
   }
 
   getLeagues(): Observable<Array<League>> {
@@ -35,6 +41,10 @@ export class LeagueService extends HttpService {
   }
 
   getManagers(leagueId: string): Observable<Array<Manager>> {
-    return this.get<Array<Manager>>(URI.MANAGERS, {id: leagueId});
+    return this.get<Array<Manager>>(URI.MANAGERS, {uriParams: { id: leagueId }, queryParams: {}});
+  }
+
+  inviteManager(managerId: string, leagueId: string): Observable<any> {
+    return this.post(URI.MANAGERS, { inviteeAccountId: managerId }, { id: leagueId });
   }
 }

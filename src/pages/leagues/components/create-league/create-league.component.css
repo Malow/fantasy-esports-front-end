@@ -1,5 +1,6 @@
 .create-league {
   padding: 5px 0;
+  overflow: hidden;
 }
 
 .form-group {

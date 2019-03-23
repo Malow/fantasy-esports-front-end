@@ -18,13 +18,14 @@ export class LeaguesComponent {
   }
 
   ngOnInit() {
-    this.leagues$ = this.leagueService.getLeagues();
+    this.getLeagues();
   }
 
   goToLeague(league) {
     this.router.navigate(['leagues/', league.id]);
   }
 
-  fromDate: NgbDate;
-  toDate: NgbDate;
+  getLeagues(): void {
+    this.leagues$ = this.leagueService.getLeagues();
+  }
 }

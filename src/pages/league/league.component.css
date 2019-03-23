@@ -1,8 +1,48 @@
-.content-loading {
+.league .content-loading {
   text-align: center;
 }
 
-.loading div {
+.league .loading div {
   background-color: gray;
   border-radius: 10px;
+}
+
+.league {
+  padding-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.league .league-details {
+  flex: 1 1 50%;
+}
+
+.league .invite {
+  padding-top: 10px;
+  flex: 1 1 30%;
+}
+
+.league .header {
+  background-image: url("/assets/images/league-headers/starcraft-2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.league .header .header-game-title {
+  padding-top: 100px;
+  padding-left: 50px;
+  text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
+}
+
+
+.league .accept-invite {
+  padding-top: 10px;
+  flex: 1 1 30%;
 }

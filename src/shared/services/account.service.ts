@@ -3,11 +3,17 @@ import { HttpService } from './http.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 export enum URI {
   LOGIN = '/account/login',
   REGISTER = '/account/register',
-  ACCOUNT = '/account'
+  ACCOUNT = '/account',
+  ACCOUNT_FIND = '/account/find'
+}
+
+export interface UserResult {
+  accounts: Array<User>
 }
 
 @Injectable()
@@ -35,10 +41,13 @@ export class AccountService extends HttpService {
     });
   }
 
-  getUser(): Observable<any> {
+  getUser(): Observable<User> {
     return this.get(URI.ACCOUNT);
   }
 
+  findUser(userName: string): Observable<UserResult> {
+    return this.get<UserResult>(URI.ACCOUNT_FIND, {queryParams: {displayName: userName}, uriParams: {}});
+  }
 
   logOut(): void {
     localStorage.removeItem('sessionKey');

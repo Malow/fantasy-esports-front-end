@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { LoginActivate } from '../shared/components/login-activate.component';
 import { AccountService } from '../shared/services/account.service';
 import { LeagueService } from '../shared/services/league.service';
+import { ManagerService } from '../shared/services/manager.service';
 
 //Pages
 import { LeaguesComponent } from '../pages/leagues/leagues.component';
@@ -29,6 +30,10 @@ import { TodaysMatchesComponent } from '../pages/home/components/todays-matches/
 import { PreviousMatchesComponent } from '../pages/home/components/previous-matches/previous-matches.component';
 import { NewsComponent } from '../pages/home/components/news/news.component';
 import { CreateLeague } from '../pages/leagues/components/create-league/create-league.component';
+
+//Pipes
+import { HumanizeBooleanPipe } from '../shared/pipes/humanize-boolean.pipe';
+import { FilterManagerPipe } from '../shared/pipes/filter-manager-pipe';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full', canActivate: [LoginActivate]},
@@ -58,7 +63,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     TodaysMatchesComponent,
     PreviousMatchesComponent,
     NewsComponent,
-    CreateLeague
+    CreateLeague,
+    HumanizeBooleanPipe,
+    FilterManagerPipe
   ],
   imports: [
     NgbModule,
@@ -80,7 +87,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     AccountService,
     LeagueService,
-    LoginActivate
+    LoginActivate,
+    ManagerService
   ],
   bootstrap: [AppComponent]
 })

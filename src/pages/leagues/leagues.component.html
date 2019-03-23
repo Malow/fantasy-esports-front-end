@@ -1,5 +1,5 @@
 <h1>{{ 'pages.leagues.leagues' | translate }}</h1>
-<create-league></create-league>
+<create-league (addLeagueEvent)="getLeagues()"></create-league>
 <div class="leagues">
 <ng-container *ngIf="(leagues$ | async) as leagues; else loading">
   <div class="leageues-item" (click)="goToLeague(league)" *ngFor="let league of leagues" >

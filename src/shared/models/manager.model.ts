@@ -2,6 +2,7 @@ export interface Manager {
   id: string,
   accountId: string,
   leagueId: string,
-  score: number,
+  displayName: string,
   leagueRole: string
+  score: number,
 }
